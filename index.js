@@ -17,8 +17,8 @@ const app = express();
 
 const storage = multer.diskStorage({
   destination: (_, __, cb) => {
-    if (!fs.existsSync('uploads')) {
-      fs.mkdirSync('uploads');
+    if (!fs.existsSync('uploads')){
+      fs.mkdirSync('uploads')
     }
     cb(null, 'uploads');
   },
@@ -29,13 +29,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const corsOptions = {
-  origin: 'https://andrei-livanov.github.io/popular_blog',
-  optionsSuccessStatus: 200,
-};
-
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/uploads', express.static('uploads'));
 
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
