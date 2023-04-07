@@ -3,10 +3,13 @@ import cors from 'cors';
 import multer from 'multer';
 import express from 'express';
 import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
 
 import { checkAuth, handleValidationErrors } from './utils/index.js';
 import { UserController, PostController } from './controllers/index.js';
 import { loginValidation, postCreateValidation, registerValidation } from './validations.js';
+
+dotenv.config();
 
 mongoose
   .connect(process.env.MONGODB_URI)
